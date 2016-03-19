@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Angular 1 VS Angular 2</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <link rel="icon" type="image/x-icon" href="images/favicons/favicon.ico"/>
+        <link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="images/favicons/favicon-194x194.png" sizes="194x194">
+        <link rel="icon" type="image/png" href="images/favicons/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css" id="theme">
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-background-color="#0273D4" data-background="images/backgrounds/superhero-paper.png">
+                    <img src="images/logos/angular2/shield-with-beta.png"/>
+					<h2>Angular 1 VS Angular 2</h2>
+					<p>
+						<small><a href="http://eqxiu.com">易企秀</a></small>
+					</p>
+				</section>
+
+                <section class="jump" data-background-color="#0273D4" data-background="images/jump.jpg">
+                    <h2>一次大跳跃</h2>
+                </section>
+
+                <section class="intro" data-background-color="#0273D4" data-background="images/backgrounds/lon-paper.png">
+                    <p>Angular 2和Angular 1之间有很多概念和语法上的改变，接下来我们从两个框架的以下方面进行对比:</p>
+                    <ul>
+                        <li><a href="#language">开发语言(Language)</a></li>
+                        <li><a href="#bootstrapping">应用启动(Bootstrapping)</a></li>
+                        <li><a href="#dataBinding">数据绑定(Data Binding)</a></li>
+                        <li><a href="#components">控制器／组件(Controller/Components)</a></li>
+                        <li><a href="#directives">指令(Template Directives)</a></li>
+                        <li><a href="#pipes">过滤器/管道(Filters/Pipes)</a></li>
+                        <li><a href="#di">依赖注入(Dependency Injection)</a></li>
+                        <li><a href="#modules">模块(Modules)</a></li>
+                    </ul>
+                </section>
+
+                <section id="language" data-background-color="#0273D4" data-background="images/backgrounds/sf-paper.png">
+                    <h2>开发语言(Language)</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Angular 1</th>
+                            <th>Angular 2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>ES 5</td>
+                            <td>ES 5</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>ES 6</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Typescript</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Dart</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="bootstrapping" data-background-color="#0273D4" data-background="images/backgrounds/superhero-paper.png">
+                    <h2>应用启动(Bootstrapping)</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Angular 1</th>
+                            <th>Angular 2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+&lt;body ng-app="movieHunter"&gt;
+                            </code></pre></td>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+import {bootstrap} from 'angular2/platform/browser';
+import {AppComponent} from './app.component';
+
+bootstrap(AppComponent);
+                            </code></pre></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p>Angular 1中，我们通过ng-app指令启动应用，同时指定启动的模块（如movieHunter）；</p>
+                    <p>而在Angular 2中没有启动指令，我们通过显示调用bootstrap函数来启动应用，将模块以参数的形式传递。</p>
+                </section>
+
+                <section id="dataBinding" data-background-color="#0273D4" data-background="images/backgrounds/sf-paper.png">
+                    <section>
+                        <h2>数据绑定(Data Binding)</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Binding</th>
+                                <th>Angular 1</th>
+                                <th>Angular 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Interpolation</td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+Hello {{'Angular 1'}}
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+Hello {{'Angular 2'}}
+                                </code></pre></td>
+                            </tr>
+                            <tr>
+                                <td>Properties</td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;a ng-href="angularDocsUrl"&gt;
+Angular Docs&lt;/a&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;a [href]="angularDocsUrl"&gt;
+Angular Docs&lt;/a&gt;
+                                </code></pre></td>
+                            </tr>
+                            <tr>
+                                <td>Events</td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;button ng-click="buy($event)"&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;button (click)="buy($event)"&gt;
+                                </code></pre></td>
+                            </tr>
+                            <tr>
+                                <td>Two-way</td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;input ng-model="userName"&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;input [(ng-model)]="userName"&gt;
+                                </code></pre></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <p>Angular 2保留Angular 1中的单向绑定（花括号语法），又细分了属性绑定、事件绑定，修改了双向绑定的使用方式。</p>
+                    </section>
+                    <section>
+                        <h2>数据绑定(Data Binding)</h2>
+                        <ul>
+                            <li>对于单向绑定，我们仍然可以使用花括号（{{}}）表达式；</li>
+                            <li>对于属性绑定，我们不再用ng-href、ng-src、ng-checked等指令，统一使用方括号（[]）表达式代替；</li>
+                            <li>对于事件绑定，我们不再用ng-click、ng-change、ng-keypress等指令，统一使用括号（()）表达式代替；</li>
+                            <li>对于双向绑定，我们仍然可以使用ngModel，只不过使用<a href="http://angular.io/docs/ts/latest/cookbook/a1-a2-quick-reference.html">“香蕉”表达式</a>（[()]，banana in a box，像个香蕉）。</li>
+                        </ul>
+                        <p style="margin-top: 0;">
+                            <img src="images/architecture/databinding.png"/>
+                        </p>
+                    </section>
+                </section>
+
+                <section id="components" data-background-color="#0273D4" data-background="images/backgrounds/lon-paper.png">
+                    <section>
+                        <h2>控制器／组件(Controller/Components)</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Angular 1</th>
+                                <th>Angular 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+angular
+    .module("movieHunter")
+    .controller("MovieListCtrl",
+    ["movieService",
+    function MovieListCtrl(movieService) {
+    }]);
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+@Component({
+    selector: 'movie-list',
+    templateUrl:
+        'app/movie-list.component.html',
+    styleUrls:
+        ['app/movie-list.component.css'],
+    pipes: [StringSafeDatePipe]
+})
+                                </code></pre></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="compare clearfix">
+                            <div class="ng1">
+                                <p>Angular 1</p>
+                                <div>Directive</div>
+                                <div class="divider">+</div>
+                                <div>Controller</div>
+                            </div>
+                            <div class="ng2">
+                                <p>Angular 2</p>
+                                <div class="divider">=</div>
+                                <div>Component</div>
+                            </div>
+                        </div>
+                    </section>
+                    <section>
+                        <h2>组件(Components)</h2>
+                        <p class="clearfix">
+                            <img src="images/architecture/component-databinding.png" style="float: left;"/>
+                            <span>Angular 2没有了Angular 1中Scope、Controller的概念，Component中定义的属性、方法都以<a href="#dataBinding">数据绑定</a>的形式绑定到Component模版中。</span>
+                        </p>
+                        <p class="clearfix">
+                            <img src="images/architecture/component-tree.png" style="float: left;"/>
+                            Angular 2的应用，都是从一个根组件（Root Component）开始，最终，我们的应用能被抽象成一个个组件组成的树。
+                        </p>
+                    </section>
+                </section>
+
+                <section id="directives" data-background-color="#0273D4" data-background="images/backgrounds/superhero-paper.png">
+                    <section>
+                        <h2>指令(Template Directives)</h2>
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Angular 1</th>
+                                <th>Angular 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;input ng-model="vm.favoriteHero"/&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;input [(ngModel)]="favoriteHero" /&gt;
+                                </code></pre></td>
+                            </tr>
+                            <tr>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;tr ng-repeat="movie in vm.movies"&gt;
+    &lt;td&gt;{{movie.title}}&lt;/td&gt;
+&lt;/tr&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;tr *ngFor="#movie of movies"&gt;
+    &lt;td&gt;{{movie.title}}&lt;/td&gt;
+&lt;/tr&gt;
+                                </code></pre></td>
+                            </tr>
+                            <tr>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;table ng-if="movies.length"&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;table *ngIf="movies.length"&gt;
+                                </code></pre></td>
+                            </tr>
+                            <tr>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;img ng-src="{{movie.imageurl}}"&gt;
+                                </code></pre></td>
+                                <td><pre><code class="hljs" data-trim contenteditable>
+&lt;img [src]="movie.imageurl"&gt;
+                                </code></pre></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section>
+                        <h2>指令(Template Directives)</h2>
+                        <ul>
+                            <li>原Angular 1的ng-href、ng-src、ng-checked等属性绑定指令，在Angular 2中统一使用方括号（[]）表达式代替；</li>
+                            <li>原Angular 1的ng-click、ng-change、ng-keypress等事件绑定指令，在Angular 2中统一使用括号（()）表达式代替；</li>
+                            <li>我们仍然可以使用ngModel进行双向绑定，只不过使用<a href="http://angular.io/docs/ts/latest/cookbook/a1-a2-quick-reference.html">“香蕉”表达式</a>（[()]）；我们仍然可以使用ngIf、ngClass等基础指令。</li>
+                        </ul>
+                        <p>Angular 2将指令细分为<a href="https://angular.io/docs/ts/latest/guide/structural-directives.html">“结构指令”（Structural directives）</a>，和<a href="https://angular.io/docs/ts/latest/guide/attribute-directives.html">“属性指令”（Attribute directives）</a>。</p>
+                        <ul>
+                            <li>像*ngFor、*ngIf等结构指令，会通过添加、删除、替换Dom元素来修改页面布局；</li>
+                            <li>像ngModel等属性指令，会修改已有元素外观或行为。</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="pipes" data-background-color="#0273D4" data-background="images/backgrounds/sf-paper.png">
+                    <h2>过滤器/管道(Filters/Pipes)</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Angular 1</th>
+                            <th>Angular 2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+&lt;td&gt;{{movie.title | uppercase}}&lt;/td&gt;
+                            </code></pre></td>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+&lt;td&gt;{{movie.title | uppercase}}&lt;/td&gt;
+                            </code></pre></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="tips">
+                        在Angular 1中，我们可以使用“|”符号来过滤或转换数据的展现，比如在这个例子中，我们把<code>title</code>属性全部改成了大写。
+                    </p>
+                    <p class="tip">
+                        在Angular 2中，仍然使用同样的语法，只不过在这里改了称呼，重新命名为“Pipe”。
+                    </p>
+                </section>
+
+                <section id="di" data-background-color="#0273D4" data-background="images/backgrounds/lon-paper.png">
+                    <h2>依赖注入(Dependency Injection)</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Angular 1</th>
+                            <th>Angular 2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+MovieListCtrl.$inject = ['MovieService'];
+function MovieListCtrl(movieService) {
+}
+                            </code></pre></td>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+constructor(movieService: MovieService) {
+}
+                            </code></pre></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="clearfix">
+                        <img src="images/architecture/injector-injects.png" style="float: left"/>
+                            <span>
+                                Angular 1中，我们可以在Controller等方法中通过名字注入依赖；<br/>
+                                而在Angular 2中，我们需要在构造函数中，以参数的形式注入。
+                            </span>
+                    </p>
+                </section>
+
+                <section id="modules" data-background-color="#0273D4" data-background="images/backgrounds/superhero-paper.png">
+                    <h2>模块(Modules)</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Angular 1</th>
+                            <th>Angular 2</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+angular.module("movieHunter",
+    ["ngRoute"]);
+                            </code></pre></td>
+                            <td><pre><code class="hljs" data-trim contenteditable>
+import {Component} from 'angular2/core';
+import {ROUTER_DIRECTIVES} from "angular2/router";
+                            </code></pre></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <p class="clearfix">
+                        <img src="images/architecture/module.png" style="float: left">
+                            <span>
+                                在Angular 1中，我们通过定义模块，用来管理我们的Controllers、Services、Directives等；<br/>
+                                而Angular 2没有自己的模块，而是使用ES 2015的模块系统，而ES 2015的模块系统是基于文件的，每一个文件就是一个模块。
+                            </span>
+                    </p>
+                </section>
+                <section data-background-color="#0273D4" data-background="images/backgrounds/lon-paper.png">
+                    <h2>One More Thing ... ...</h2>
+                    <p>
+                        根据<a href="https://angular.io/features.html">官方说法</a>，Angular 2比Angular 1有了极大的性能提升，而且学习资源也越来越丰富，下面贴两个教育资源地址。
+                    </p>
+                    <ul>
+                        <li><a href="https://angular.io/docs/ts/latest/">Angular 2官网</a>;</li>
+                        <li><a href="https://github.com/angular/angular-seed">Angular Seed</a>;</li>
+                        <li><a href="https://github.com/AngularClass/awesome-angular2">Angular Class</a>.</li>
+                    </ul>
+                </section>
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
